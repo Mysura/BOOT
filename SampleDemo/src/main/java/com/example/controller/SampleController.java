@@ -44,7 +44,7 @@ public class SampleController {
 	
 	//getParticular Employee.
 	@RequestMapping(value = "/employee/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Employee> getEmployee(@PathVariable(name="id") int id) {
+	public ResponseEntity<Employee> getEmployee(@PathVariable("id") int id) {
 		    Employee emp = empService.findOne(id);
 		    if(emp != null) {
 		    return new ResponseEntity<Employee>(emp, HttpStatus.OK);
@@ -55,7 +55,19 @@ public class SampleController {
 	
 	//delete Employee
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
-	public void delete(@PathVariable(name="id") int id){
+	public void delete(@PathVariable("id") int id){
 		empService.delete(id);
 	}
+	
+	//getParticular Employee.
+		@RequestMapping(value = "/employee/mongo/{name}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+		public ResponseEntity<Employee> getEmployeeName(@PathVariable("name") String name) {
+			    Employee emp = empService.findByMongoUserName(name);
+			    if(emp != null) {
+			    return new ResponseEntity<Employee>(emp, HttpStatus.OK);
+			    }else{
+			    	return new ResponseEntity<Employee>(HttpStatus.BAD_REQUEST);
+			    }
+		}
+		
 }

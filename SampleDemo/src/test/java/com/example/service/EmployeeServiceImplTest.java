@@ -6,23 +6,32 @@ import java.util.Collection;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Matchers;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.AbstractControllerTest;
+import com.example.Repository.EmployeeMongoRepository;
 import com.example.Repository.EmployeeRepository;
 import com.example.model.Employee;
 
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringBootTest
+@WebAppConfiguration
 @Transactional
-public class EmployeeServiceImplTest extends AbstractControllerTest{
+public class EmployeeServiceImplTest{
 	
 	@Mock
 	public EmployeeRepository employeeRepository;
+	@Mock
+	public EmployeeMongoRepository employeeMongoRepository;
 	
 	@InjectMocks
 	public EmployeeServiceImpl employeeServiceImpl = new EmployeeServiceImpl();

@@ -14,4 +14,8 @@ public interface EmployeeService {
 	
 	public void delete(int id);
 
+	public Employee findByMongoUserName(String userName);
+	
+	
+
 }

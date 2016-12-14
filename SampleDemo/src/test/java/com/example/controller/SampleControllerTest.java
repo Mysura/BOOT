@@ -10,26 +10,35 @@ import java.util.ArrayList;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Matchers;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import com.example.AbstractControllerTest;
 import com.example.model.Employee;
 import com.example.service.EmployeeService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringBootTest
+@WebAppConfiguration
 @org.springframework.transaction.annotation.Transactional
-public class SampleControllerTest extends AbstractControllerTest {
+public class SampleControllerTest {
 
 	@Mock
 	public EmployeeService empService;
 
 	@InjectMocks
 	public SampleController sampleController;
+	
+	public MockMvc mockMvc;
 
 	@Before
 	public void setUp() {
